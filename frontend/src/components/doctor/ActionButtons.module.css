@@ -1,0 +1,35 @@
+.actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.actions button {
+  padding: 0.45rem 0.8rem;
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  color: white;
+  font-size: var(--font-sm);
+  transition: var(--transition);
+}
+
+.start {
+  background: var(--primary-color);
+}
+
+.complete {
+  background: var(--success-color);
+}
+
+.skip {
+  background: var(--warning-color);
+}
+
+.completed {
+  color: var(--success-color);
+  font-weight: bold;
+}
+
+.actions button:hover {
+  opacity: 0.9;
+}

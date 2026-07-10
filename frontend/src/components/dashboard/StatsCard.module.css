@@ -1,0 +1,31 @@
+.card {
+  background: var(--surface-color);
+  padding: 1.5rem;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition);
+
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.title {
+  color: var(--text-secondary);
+  font-size: var(--font-sm);
+}
+
+.value {
+  color: var(--primary-color);
+  font-size: var(--font-2xl);
+  font-weight: bold;
+}
+
+.subtitle {
+  color: var(--text-secondary);
+  font-size: var(--font-xs);
+}

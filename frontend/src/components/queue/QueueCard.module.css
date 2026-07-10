@@ -1,0 +1,47 @@
+.card {
+  background: var(--surface-color);
+  padding: 1rem;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition);
+}
+
+.card:hover {
+  transform: translateY(-3px);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.patientName {
+  margin-top: 0.75rem;
+  color: var(--text-secondary);
+  font-size: var(--font-md);
+}
+
+.status {
+  padding: 0.35rem 0.75rem;
+  border-radius: var(--radius-sm);
+  color: white;
+  font-size: var(--font-sm);
+  font-weight: 600;
+}
+
+.waiting {
+  background: var(--warning-color);
+}
+
+.in-progress {
+  background: var(--primary-color);
+}
+
+.completed {
+  background: var(--success-color);
+}
+
+.cancelled {
+  background: var(--danger-color);
+}

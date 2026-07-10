@@ -1,0 +1,10 @@
+.doctorPage {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.heading {
+  font-size: 2rem;
+  color: var(--text-primary);
+}

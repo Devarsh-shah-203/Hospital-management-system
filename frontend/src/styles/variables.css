@@ -1,0 +1,60 @@
+:root {
+  /* ========== Colors ========== */
+  --primary-color: #2563eb;
+  --primary-hover: #1d4ed8;
+
+  --secondary-color: #1e293b;
+
+  --success-color: #16a34a;
+  --warning-color: #f59e0b;
+  --danger-color: #dc2626;
+
+  --background-color: #f8fafc;
+  --surface-color: #ffffff;
+
+  --text-primary: #0f172a;
+  --text-secondary: #64748b;
+
+  --border-color: #e2e8f0;
+
+  /* ========== Typography ========== */
+
+  --font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+
+  --font-xs: 0.75rem;
+  --font-sm: 0.875rem;
+  --font-md: 1rem;
+  --font-lg: 1.25rem;
+  --font-xl: 1.5rem;
+  --font-2xl: 2rem;
+
+  /* ========== Spacing ========== */
+
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+
+  /* ========== Radius ========== */
+
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+
+  /* ========== Shadow ========== */
+
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
+
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.1);
+
+  /* ========== Layout ========== */
+
+  --navbar-height: 70px;
+
+  --sidebar-width: 250px;
+
+  /* ========== Animation ========== */
+
+  --transition: all 0.25s ease;
+}
