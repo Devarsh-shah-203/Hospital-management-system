@@ -1,6 +1,8 @@
 import asyncHandler from "../utils/asyncHandler.js";
 import ApiResponse from "../utils/ApiResponse.js";
 import { createAppointmentService,getDoctorAvailabilityService,getMyAppointmentsService,cancelAppointmentService } from "../services/appointment.service.js";
+import { createQueueEntryService} from "../services/queue.service.js";
+
 
 export const createAppointment = asyncHandler(async (req, res) => {
   const patientId = req.user.id;
@@ -18,10 +20,13 @@ export const createAppointment = asyncHandler(async (req, res) => {
     appointmentTime,
   });
 
+  const queue = await createQueueEntryService(appointment._id);
+
   return res.status(201).json(
     new ApiResponse(
       201,
       appointment,
+      queue,
       "Appointment booked successfully"
     )
   );
@@ -55,9 +60,10 @@ export const cancelAppointment = asyncHandler(async (req, res) => {
 });
 
 export const getDoctorAvailability = asyncHandler(async (req, res) => {
-  const { doctorId } = req.params;
+  const  doctorId  = req.params.doctorId;
   const { date } = req.query;
 
+  console.log("Doctor Id:",doctorId)
   if (!date) {
     return res.status(400).json(
       new ApiResponse(400, null, "Date is required")
