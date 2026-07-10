@@ -1,0 +1,25 @@
+.tableContainer {
+  background: var(--surface-color);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table thead {
+  background: var(--primary-color);
+  color: white;
+}
+
+.table th {
+  padding: 1rem;
+  text-align: left;
+}
+
+.table tbody tr:hover {
+  background: #f8fafc;
+}

@@ -1,0 +1,22 @@
+.queuePage {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.heading {
+  font-size: 2rem;
+  color: var(--text-primary);
+}
+
+.topCards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.queueSection {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}

@@ -1,0 +1,70 @@
+@import "./variables.css";
+@import "./animations.css";
+
+/* ===== Reset ===== */
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ===== Base ===== */
+
+html,
+body,
+#root {
+  width: 100%;
+  min-height: 100vh;
+}
+
+body {
+  font-family: var(--font-family);
+
+  background: var(--background-color);
+
+  color: var(--text-primary);
+
+  line-height: 1.5;
+}
+
+/* ===== Images ===== */
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+/* ===== Links ===== */
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* ===== Buttons ===== */
+
+button {
+  border: none;
+  cursor: pointer;
+  transition: var(--transition);
+
+  font-family: inherit;
+}
+
+/* ===== Inputs ===== */
+
+input,
+textarea,
+select {
+  outline: none;
+  font-family: inherit;
+}
+
+/* ===== List ===== */
+
+ul {
+  list-style: none;
+}

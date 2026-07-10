@@ -1,0 +1,35 @@
+.card {
+  background: var(--surface-color);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  padding: 1.5rem;
+  transition: var(--transition);
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.header h4 {
+  font-size: var(--font-md);
+  color: var(--text-secondary);
+  font-weight: 600;
+}
+
+.icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card h2 {
+  font-size: var(--font-2xl);
+  color: var(--text-primary);
+}

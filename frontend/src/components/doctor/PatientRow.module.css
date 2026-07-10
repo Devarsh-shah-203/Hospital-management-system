@@ -1,0 +1,28 @@
+.row td {
+  padding: 1rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.status {
+  padding: 0.4rem 0.8rem;
+  border-radius: var(--radius-sm);
+  color: white;
+  font-size: var(--font-sm);
+  font-weight: 600;
+}
+
+.waiting {
+  background: var(--warning-color);
+}
+
+.in-progress {
+  background: var(--primary-color);
+}
+
+.completed {
+  background: var(--success-color);
+}
+
+.cancelled {
+  background: var(--danger-color);
+}
