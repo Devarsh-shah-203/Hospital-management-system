@@ -6,6 +6,7 @@ import morgan from "morgan";
 import authRoutes from "./routes/auth.routes.js";
 import doctorRoutes from "./routes/doctor.routes.js";
 import historyRoutes from "./routes/history.routes.js";
+import queueRoutes from "./routes/queue.routes.js";
 import appointmentRoutes from "./routes/appointment.routes.js";
 
 const app = express();
@@ -36,9 +37,9 @@ app.use(cookieParser());
 
 app.use("/api/auth", authRoutes);
 app.use("/api/doctor", doctorRoutes);
-app.use("/api/doctor", doctorRoutes);
 app.use("/api/history", historyRoutes);
 app.use("/api/appointment", appointmentRoutes);
+app.use("/api/queue", queueRoutes);
 
 app.get("/", (req, res) => {
   res.status(200).json({
