@@ -34,6 +34,33 @@ const userschema = new mongoose.Schema(
       default: null,
     },
 
+    role: {
+      type: String,
+      enum: ["PATIENT", "DOCTOR", "ADMIN"],
+      default: "PATIENT",
+      required: true,
+    },
+
+    specialization: {
+      type: String,
+      default: null,
+    },
+
+    department: {
+      type: String,
+      default: null,
+    },
+
+    experience: {
+      type: Number,
+      default: 0,
+    },
+
+    isAvailable: {
+      type: Boolean,
+      default: true,
+    },
+
     isVerified: {
       type: Boolean,
       default: false,

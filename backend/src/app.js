@@ -4,7 +4,9 @@ import helmet from "helmet";
 import cookieParser from "cookie-parser";
 import morgan from "morgan";
 import authRoutes from "./routes/auth.routes.js";
-
+import doctorRoutes from "./routes/doctor.routes.js";
+import doctorRoutes from "./routes/doctor.routes.js";
+import historyRoutes from "./routes/history.routes.js";
 
 const app = express();
 
@@ -33,8 +35,9 @@ app.use(cookieParser());
 
 
 app.use("/api/auth", authRoutes);
-
-
+app.use("/api/doctor", doctorRoutes);
+app.use("/api/doctor", doctorRoutes);
+app.use("/api/history", historyRoutes);
 
 
 app.get("/", (req, res) => {
