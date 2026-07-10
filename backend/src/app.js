@@ -7,6 +7,7 @@ import authRoutes from "./routes/auth.routes.js";
 import doctorRoutes from "./routes/doctor.routes.js";
 import doctorRoutes from "./routes/doctor.routes.js";
 import historyRoutes from "./routes/history.routes.js";
+import appointmentRoutes from "./routes/appointment.routes.js";
 
 const app = express();
 
