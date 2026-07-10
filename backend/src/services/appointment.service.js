@@ -8,28 +8,33 @@ export const createAppointmentService = async ({
   appointmentDate,
   appointmentTime,
 }) => {
-  // Check doctor exists
   const doctor = await User.findById(doctorId);
 
   if (!doctor || doctor.role !== "DOCTOR" || !doctor.isAvailable) {
     throw new ApiError(404, "Doctor not found or inactive");
   }
 
-  // Prevent booking in the past
   const selectedDate = new Date(appointmentDate);
-  const today = new Date();
 
-  selectedDate.setHours(0, 0, 0, 0);
+  const startOfDay = new Date(selectedDate);
+  startOfDay.setHours(0, 0, 0, 0);
+
+  const endOfDay = new Date(selectedDate);
+  endOfDay.setHours(23, 59, 59, 999);
+
+  const today = new Date();
   today.setHours(0, 0, 0, 0);
 
-  if (selectedDate < today) {
+  if (startOfDay < today) {
     throw new ApiError(400, "Appointment date cannot be in the past");
   }
 
-  // Check if slot is already booked
   const existingAppointment = await Appointment.findOne({
     doctor: doctorId,
-    appointmentDate: selectedDate,
+    appointmentDate: {
+      $gte: startOfDay,
+      $lte: endOfDay,
+    },
     appointmentTime,
     status: {
       $nin: ["CANCELLED", "NO_SHOW"],
@@ -43,15 +48,13 @@ export const createAppointmentService = async ({
   const appointment = await Appointment.create({
     patient: patientId,
     doctor: doctorId,
-    appointmentDate: selectedDate,
+    appointmentDate: startOfDay,
     appointmentTime,
-    consultationDuration:
-      doctor.consultationDuration || 15,
+    consultationDuration: doctor.consultationDuration,
   });
 
   return appointment;
 };
-
 
 const generateTimeSlots = (start, end, duration) => {
   const slots = [];
@@ -86,6 +89,7 @@ export const getDoctorAvailabilityService = async (
 ) => {
   const doctor = await User.findById(doctorId);
 
+  console.log("id:",doctorId);
   if (!doctor)
     throw new ApiError(404, "Doctor not found");
 
