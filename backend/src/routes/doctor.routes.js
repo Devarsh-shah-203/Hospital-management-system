@@ -1,7 +1,7 @@
 import { Router } from "express";
 
 import authenticate from "../middlewares/authenticate.middleware.js";
-// import authorize from "../middlewares/role.middleware.js";
+import authorize from "../middlewares/role.middleware.js";
 
 import {
   getDashboard,
@@ -23,7 +23,7 @@ const router = Router();
 router.use(authenticate);
 
 // If your team has role middleware, enable this
-// router.use(authorize("DOCTOR"));
+router.use(authorize("DOCTOR"));
 
 router.get("/dashboard", getDashboard);
 
