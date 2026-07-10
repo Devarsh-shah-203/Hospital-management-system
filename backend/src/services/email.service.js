@@ -3,13 +3,14 @@ import nodemailer from "nodemailer";
 import ApiError from "../utils/ApiError.js";
 
 import WelcomeEmail from "../templates/WelcomeEmail.template.js";
+import {appointmentConfirmationTemplate} from "../templates/appointmentConfirmation.template.js";
 
 export const sendEmail = async ({
     to,
     subject,
     html,
 }) => {
-
+    console.log("Patient email:", to);
     if (!to) {
         throw new ApiError(
             400,
@@ -24,6 +25,28 @@ export const sendEmail = async ({
         html,
     });
 
+};
+
+export const appointmentConfirmationEmail = async ({
+    email,
+    name,
+    date,
+    time,
+    doctorName,
+    queueNo,
+    queuePos
+}) => {
+    await sendEmail({
+        to: email,
+        subject: "Appointment Confirmed ✅",
+        html: appointmentConfirmationTemplate({email,
+            name,
+            date,
+            time,
+            doctorName,
+            queueNo,
+            queuePos})
+    });
 };
 
 export const signupEmail = async (email, name) => {
