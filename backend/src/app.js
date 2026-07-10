@@ -3,8 +3,6 @@ import cors from "cors";
 import helmet from "helmet";
 import cookieParser from "cookie-parser";
 import morgan from "morgan";
-
-
 import authRoutes from "./routes/auth.routes.js";
 
 

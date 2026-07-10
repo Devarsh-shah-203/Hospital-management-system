@@ -1,7 +1,7 @@
-import "./backend/src/config/env.js";
-import app from "./backend/src/app.js";
-import cors from "cors";
-import connectDB from "./backend/src/config/db.js";
+import "./src/config/env.js";
+import app from "./src/app.js";
+
+import connectDB from "./src/config/db.js";
 
 
 connectDB();
