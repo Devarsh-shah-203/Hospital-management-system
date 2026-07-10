@@ -1,5 +1,6 @@
 import Appointment from "../models/appointment.model.js";
 import ApiError from "../utils/ApiError.js";
+import User from "../models/user.model.js";
 
 const getTodayRange = () => {
   const start = new Date();
