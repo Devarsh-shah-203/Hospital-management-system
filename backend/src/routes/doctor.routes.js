@@ -9,6 +9,7 @@ import {
   getAppointmentController,
   completeAppointmentController,
   cancelAppointmentController,
+  getAllDoctors 
 } from "../controllers/doctor.controller.js";
 
 const router = Router();
@@ -42,5 +43,9 @@ router.patch(
   "/appointment/:id/cancel",
   cancelAppointmentController
 );
+
+
+router.get("/alldoctors",authenticate, getAllDoctors);
+
 
 export default router;

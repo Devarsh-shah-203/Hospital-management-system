@@ -7,6 +7,7 @@ import {
   getAppointmentDetails,
   completeAppointment,
   cancelAppointment,
+  getAllDoctorsService,
 } from "../services/doctor.service.js";
 
 /**
@@ -95,6 +96,19 @@ export const cancelAppointmentController = asyncHandler(async (req, res) => {
       200,
       appointment,
       "Appointment cancelled successfully"
+    )
+  );
+});
+
+
+export const getAllDoctors = asyncHandler(async (req, res) => {
+  const doctors = await getAllDoctorsService();
+
+  return res.status(200).json(
+    new ApiResponse(
+      200,
+      doctors,
+      "Doctors fetched successfully"
     )
   );
 });

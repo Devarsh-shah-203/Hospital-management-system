@@ -61,9 +61,42 @@ const userschema = new mongoose.Schema(
       default: true,
     },
 
-    isVerified: {
-      type: Boolean,
-      default: false,
+    workingHours: {
+      start: {
+        type: String,
+        default: "09:00",
+      },
+      end: {
+        type: String,
+        default: "17:00",
+      },
+    },
+    
+    consultationDuration: {
+      type: Number,
+      default: 15, // minutes
+      min: 5,
+      max: 120,
+    },
+    
+    workingDays: {
+      type: [String],
+      enum: [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+        "Sunday",
+      ],
+      default: [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+      ],
     },
 
     loginAttempts: {
