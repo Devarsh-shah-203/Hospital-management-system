@@ -1,43 +1,70 @@
+import {
+  completeAppointment,
+  cancelAppointment,
+} from "../../services/doctorService";
+
 import styles from "./ActionButtons.module.css";
 
-function ActionButtons({
-  onStart,
-  onComplete,
-  onSkip,
-  status,
-}) {
+function ActionButtons({ appointmentId, status }) {
+  const handleComplete = async () => {
+    try {
+      await completeAppointment(appointmentId);
+
+      // Temporary refresh
+      window.location.reload();
+    } catch (error) {
+      console.error("Complete Error:", error);
+    }
+  };
+
+  const handleCancel = async () => {
+    try {
+      await cancelAppointment(appointmentId);
+
+      // Temporary refresh
+      window.location.reload();
+    } catch (error) {
+      console.error("Cancel Error:", error);
+    }
+  };
+
   return (
     <div className={styles.actions}>
-      {status === "Waiting" && (
-        <button
-          className={styles.start}
-          onClick={onStart}
-        >
-          Start
-        </button>
-      )}
-
-      {status === "In Progress" && (
+      {(status === "BOOKED" ||
+        status === "CHECKED_IN" ||
+        status === "IN_PROGRESS") && (
         <>
           <button
             className={styles.complete}
-            onClick={onComplete}
+            onClick={handleComplete}
           >
             Complete
           </button>
 
           <button
             className={styles.skip}
-            onClick={onSkip}
+            onClick={handleCancel}
           >
-            Skip
+            Cancel
           </button>
         </>
       )}
 
-      {status === "Completed" && (
+      {status === "COMPLETED" && (
         <span className={styles.completed}>
           Completed
+        </span>
+      )}
+
+      {status === "CANCELLED" && (
+        <span className={styles.cancelled}>
+          Cancelled
+        </span>
+      )}
+
+      {status === "NO_SHOW" && (
+        <span className={styles.noShow}>
+          No Show
         </span>
       )}
     </div>

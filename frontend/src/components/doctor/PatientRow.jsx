@@ -1,18 +1,15 @@
 import styles from "./PatientRow.module.css";
 
 function PatientRow({
-  token,
   patientName,
   appointmentTime,
   status,
   children,
 }) {
-  const statusClass = status.toLowerCase().replace(/\s+/g, "-");
+  const statusClass = status.toLowerCase().replace(/_/g, "-");
 
   return (
     <tr className={styles.row}>
-      <td>{token}</td>
-
       <td>{patientName}</td>
 
       <td>{appointmentTime}</td>
@@ -21,7 +18,7 @@ function PatientRow({
         <span
           className={`${styles.status} ${styles[statusClass]}`}
         >
-          {status}
+          {status.replace(/_/g, " ")}
         </span>
       </td>
 

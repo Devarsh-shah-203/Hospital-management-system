@@ -11,18 +11,26 @@
   font-weight: 600;
 }
 
-.waiting {
-  background: var(--warning-color);
+.booked {
+  background: #3b82f6;
+}
+
+.checked-in {
+  background: #f59e0b;
 }
 
 .in-progress {
-  background: var(--primary-color);
+  background: #8b5cf6;
 }
 
 .completed {
-  background: var(--success-color);
+  background: #22c55e;
 }
 
 .cancelled {
-  background: var(--danger-color);
+  background: #ef4444;
+}
+
+.no-show {
+  background: #6b7280;
 }
