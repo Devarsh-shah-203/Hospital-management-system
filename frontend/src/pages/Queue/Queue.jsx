@@ -1,48 +1,44 @@
+import { useEffect, useState } from "react";
+
 import CurrentToken from "../../components/queue/CurrentToken";
 import WaitingTimer from "../../components/queue/WaitingTimer";
-import QueueList from "../../components/queue/QueueList";
+import QueueDetails from "../../components/queue/QueueDetails";
+
+import { getMyQueue } from "../../services/queueService";
 
 import styles from "./Queue.module.css";
 
 function Queue() {
-  // Temporary Mock Data
-  const queueData = {
-    currentToken: "A-101",
-    waitingTime: "18 mins",
-    queue: [
-      {
-        token: "A-102",
-        patientName: "Rahul Patel",
-        status: "Waiting",
-      },
-      {
-        token: "A-103",
-        patientName: "Krish Patel",
-        status: "In Progress",
-      },
-      {
-        token: "A-104",
-        patientName: "Amit Shah",
-        status: "Completed",
-      },
-    ],
-  };
+  const [queue, setQueue] = useState(null);
+
+  useEffect(() => {
+    const fetchQueue = async () => {
+      try {
+        const data = await getMyQueue();
+        setQueue(data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchQueue();
+  }, []);
+
+  if (!queue) {
+    return <h2>Loading...</h2>;
+  }
 
   return (
     <div className={styles.queuePage}>
       <h1 className={styles.heading}>Live Queue</h1>
 
       <div className={styles.topCards}>
-        <CurrentToken token={queueData.currentToken} />
+        <CurrentToken token={queue.queueNumber} />
 
-        <WaitingTimer waitingTime={queueData.waitingTime} />
+        <WaitingTimer waitingTime={`${queue.estimatedWaitTime} mins`} />
       </div>
 
-      <section className={styles.queueSection}>
-        <h2>Patient Queue</h2>
-
-        <QueueList queue={queueData.queue} />
-      </section>
+      <QueueDetails queue={queue} />
     </div>
   );
 }
