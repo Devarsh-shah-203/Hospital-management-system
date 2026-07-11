@@ -1,60 +1,73 @@
-import jwt from 'jsonwebtoken';
-import User from '../models/user.model.js';
+import jwt from "jsonwebtoken";
+import User from "../models/user.model.js";
 
 const authenticate = async (req, res, next) => {
   try {
+<<<<<<< HEAD
     // Get token from header
     const authHeader = req.headers.authorization;
    
     if (!authHeader || !authHeader.startsWith('Bearer ')) {
+=======
+    let token = null;
+
+    // 1. Try Authorization Header
+    const authHeader = req.headers.authorization;
+
+    if (authHeader && authHeader.startsWith("Bearer ")) {
+      token = authHeader.split(" ")[1];
+    }
+
+    // 2. If not found, try Cookies
+    if (!token) {
+      token = req.cookies?.accessToken;
+    }
+
+    // 3. No token
+    if (!token) {
+>>>>>>> 2e375c146242fe393d4527427418ddf7a35bd99d
       return res.status(401).json({
         success: false,
-        message: 'No token provided. Access denied.',
+        message: "No token provided. Access denied.",
       });
     }
 
-
-    const token = authHeader.split(' ')[1];
-    
-  // console.log("\n Token:", token);
-  //  console.log("\n Parts:", token.split(".").length);
-
-    // Verify token
+    // 4. Verify Token
     const decoded = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
-   
-    const user = await User.findOne({email:decoded.email}).select('-password');
+
+    // 5. Find User
+    const user = await User.findById(decoded.id).select("-password");
 
     if (!user) {
       return res.status(401).json({
         success: false,
-        message: 'User not found. Token invalid.',
+        message: "User not found. Token invalid.",
       });
     }
 
-    // Attach user to request
     req.user = user;
+
     next();
-  } 
-  catch (error) {
+  } catch (error) {
+    console.error(error);
 
-    //console.log("\n Error name:", error.name);
-    //console.log("\n Error message:", error.message);
-
-    if (error.name === 'JsonWebTokenError') {
+    if (error.name === "JsonWebTokenError") {
       return res.status(401).json({
         success: false,
-        message: 'Invalid token.',
+        message: "Invalid token.",
       });
     }
-    if (error.name === 'TokenExpiredError') {
+
+    if (error.name === "TokenExpiredError") {
       return res.status(401).json({
         success: false,
-        message: 'Token expired.',
+        message: "Token expired.",
       });
     }
+
     return res.status(500).json({
       success: false,
-      message: 'Authentication error.',
+      message: "Authentication error.",
     });
   }
 };
