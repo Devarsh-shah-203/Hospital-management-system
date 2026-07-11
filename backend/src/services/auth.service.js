@@ -12,6 +12,7 @@ export const registerUser = async ({
   email,
   password,
   phone,
+  role,
 }) => {
   username = username.trim();
   email = email.trim().toLowerCase();
@@ -35,6 +36,7 @@ export const registerUser = async ({
     email,
     password,
     phone,
+    role,
    
   });
 

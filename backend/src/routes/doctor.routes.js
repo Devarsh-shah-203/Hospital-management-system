@@ -23,7 +23,7 @@ const router = Router();
 router.use(authenticate);
 
 // If your team has role middleware, enable this
-router.use(authorize("DOCTOR"));
+// router.use(authorize("DOCTOR"));
 
 router.get("/dashboard", getDashboard);
 

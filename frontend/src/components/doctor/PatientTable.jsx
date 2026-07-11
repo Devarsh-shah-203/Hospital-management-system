@@ -3,39 +3,37 @@ import ActionButtons from "./ActionButtons";
 import styles from "./PatientTable.module.css";
 
 function PatientTable({ patients }) {
+  if (!patients || patients.length === 0) {
+    return (
+      <div className={styles.emptyState}>
+        <h3>No appointments for today.</h3>
+      </div>
+    );
+  }
+
   return (
     <div className={styles.tableContainer}>
       <table className={styles.table}>
         <thead>
           <tr>
-            <th>Token</th>
-            <th>Patient Name</th>
-            <th>Appointment</th>
+            <th>Patient</th>
+            <th>Time</th>
             <th>Status</th>
             <th>Action</th>
           </tr>
         </thead>
 
         <tbody>
-          {patients.map((patient) => (
+          {patients.map((appointment) => (
             <PatientRow
-              key={patient.token}
-              token={patient.token}
-              patientName={patient.patientName}
-              appointmentTime={patient.appointmentTime}
-              status={patient.status}
+              key={appointment._id}
+              patientName={appointment.patient?.username}
+              appointmentTime={appointment.appointmentTime}
+              status={appointment.status}
             >
               <ActionButtons
-                status={patient.status}
-                onStart={() =>
-                  console.log("Start", patient.token)
-                }
-                onComplete={() =>
-                  console.log("Complete", patient.token)
-                }
-                onSkip={() =>
-                  console.log("Skip", patient.token)
-                }
+                appointmentId={appointment._id}
+                status={appointment.status}
               />
             </PatientRow>
           ))}

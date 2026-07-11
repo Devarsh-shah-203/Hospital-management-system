@@ -23,3 +23,11 @@
 .table tbody tr:hover {
   background: #f8fafc;
 }
+
+.emptyState {
+  padding: 2rem;
+  text-align: center;
+  background: var(--surface-color);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+}

@@ -1,6 +1,7 @@
 .actions {
   display: flex;
   gap: 0.5rem;
+  align-items: center;
 }
 
 .actions button {
@@ -13,8 +14,8 @@
   transition: var(--transition);
 }
 
-.start {
-  background: var(--primary-color);
+.actions button:hover {
+  opacity: 0.9;
 }
 
 .complete {
@@ -22,14 +23,20 @@
 }
 
 .skip {
-  background: var(--warning-color);
+  background: var(--danger-color);
 }
 
 .completed {
   color: var(--success-color);
-  font-weight: bold;
+  font-weight: 600;
 }
 
-.actions button:hover {
-  opacity: 0.9;
+.cancelled {
+  color: var(--danger-color);
+  font-weight: 600;
+}
+
+.noShow {
+  color: #6b7280;
+  font-weight: 600;
 }

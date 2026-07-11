@@ -62,12 +62,13 @@ export const getAppointmentController = asyncHandler(async (req, res) => {
  * PATCH /api/doctor/appointment/:id/complete
  */
 export const completeAppointmentController = asyncHandler(async (req, res) => {
-  const { notes } = req.body;
+  const { diagnosis,prescription } = req.body;
 
   const appointment = await completeAppointment(
     req.params.id,
     req.user._id,
-    notes
+    diagnosis,
+    prescription,
   );
 
   return res.status(200).json(
