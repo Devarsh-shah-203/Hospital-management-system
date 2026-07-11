@@ -33,7 +33,7 @@ app.use(
 
 app.use(cookieParser());
 
-
+//http://localhost:8000/api/doctor/alldoctors
 
 app.use("/api/auth", authRoutes);
 app.use("/api/doctor", doctorRoutes);

@@ -148,12 +148,12 @@ export const getAllDoctorsService = async () => {
   const doctors = await User.find({
     role: "DOCTOR",
     isAvailable: true,
-    isActive: true,
+    
   })
     .select(
-      "_id fullName specialization department experience consultationDuration workingHours"
+      "_id username specialization department experience consultationDuration workingHours"
     )
-    .sort({ fullName: 1 });
+    .sort({ username : 1 });
 
   if (!doctors.length) {
     throw new ApiError(404, "No doctors found");
