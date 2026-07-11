@@ -7,7 +7,8 @@ const api = axios.create({
     "Content-Type": "application/json",
   },
 });
- //Add Authorization header automatically
+
+// Add Authorization header automatically
 api.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem("accessToken");
@@ -20,4 +21,5 @@ api.interceptors.request.use(
   },
   (error) => Promise.reject(error)
 );
+
 export default api;

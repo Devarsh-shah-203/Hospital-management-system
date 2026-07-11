@@ -8,6 +8,7 @@ import doctorRoutes from "./routes/doctor.routes.js";
 import historyRoutes from "./routes/history.routes.js";
 import queueRoutes from "./routes/queue.routes.js";
 import appointmentRoutes from "./routes/appointment.routes.js";
+import profileRoutes from "./routes/profile.routes.js";
 
 const app = express();
 
@@ -40,7 +41,7 @@ app.use("/api/doctor", doctorRoutes);
 app.use("/api/history", historyRoutes);
 app.use("/api/appointment", appointmentRoutes);
 app.use("/api/queue", queueRoutes);
-
+app.use("/api/profile", profileRoutes);
 app.get("/", (req, res) => {
   res.status(200).json({
     success: true,
