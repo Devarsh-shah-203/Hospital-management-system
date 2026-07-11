@@ -90,7 +90,8 @@ export const getAppointmentDetails = async (
 export const completeAppointment = async (
   appointmentId,
   doctorId,
-  notes
+  diagnosis,
+  prescription
 ) => {
   const appointment = await Appointment.findOneAndUpdate(
     {
@@ -99,7 +100,8 @@ export const completeAppointment = async (
     },
     {
       status: "COMPLETED",
-      notes,
+      diagnosis,
+      prescription
     },
     {
       new: true,
