@@ -5,15 +5,35 @@ import {
 
 import styles from "./ActionButtons.module.css";
 
-function ActionButtons({ appointmentId, status }) {
+function ActionButtons({
+  appointmentId,
+  status,
+  diagnosis,
+  prescription,
+}) {
   const handleComplete = async () => {
-    try {
-      await completeAppointment(appointmentId);
+    if (!diagnosis.trim()) {
+      alert("Please enter diagnosis");
+      return;
+    }
 
-      // Temporary refresh
+    if (!prescription.trim()) {
+      alert("Please enter prescription");
+      return;
+    }
+
+    try {
+      await completeAppointment(
+        appointmentId,
+        diagnosis,
+        prescription
+      );
+
+      alert("Appointment completed successfully");
+
       window.location.reload();
     } catch (error) {
-      console.error("Complete Error:", error);
+      console.error(error);
     }
   };
 
@@ -21,10 +41,11 @@ function ActionButtons({ appointmentId, status }) {
     try {
       await cancelAppointment(appointmentId);
 
-      // Temporary refresh
+      alert("Appointment cancelled successfully");
+
       window.location.reload();
     } catch (error) {
-      console.error("Cancel Error:", error);
+      console.error(error);
     }
   };
 

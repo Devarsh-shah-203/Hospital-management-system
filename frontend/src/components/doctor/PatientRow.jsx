@@ -4,6 +4,8 @@ function PatientRow({
   patientName,
   appointmentTime,
   status,
+  diagnosisInput,
+  prescriptionInput,
   children,
 }) {
   const statusClass = status.toLowerCase().replace(/_/g, "-");
@@ -21,6 +23,10 @@ function PatientRow({
           {status.replace(/_/g, " ")}
         </span>
       </td>
+
+      <td>{diagnosisInput}</td>
+
+      <td>{prescriptionInput}</td>
 
       <td>{children}</td>
     </tr>

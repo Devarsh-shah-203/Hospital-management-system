@@ -1,8 +1,23 @@
+import { useState } from "react";
+
 import PatientRow from "./PatientRow";
 import ActionButtons from "./ActionButtons";
+
 import styles from "./PatientTable.module.css";
 
 function PatientTable({ patients }) {
+  const [formData, setFormData] = useState({});
+
+  const handleChange = (id, field, value) => {
+    setFormData((prev) => ({
+      ...prev,
+      [id]: {
+        ...prev[id],
+        [field]: value,
+      },
+    }));
+  };
+
   if (!patients || patients.length === 0) {
     return (
       <div className={styles.emptyState}>
@@ -19,6 +34,8 @@ function PatientTable({ patients }) {
             <th>Patient</th>
             <th>Time</th>
             <th>Status</th>
+            <th>Diagnosis</th>
+            <th>Prescription</th>
             <th>Action</th>
           </tr>
         </thead>
@@ -30,10 +47,50 @@ function PatientTable({ patients }) {
               patientName={appointment.patient?.username}
               appointmentTime={appointment.appointmentTime}
               status={appointment.status}
+
+              diagnosisInput={
+                <input
+                  type="text"
+                  placeholder="Diagnosis"
+                  value={
+                    formData[appointment._id]?.diagnosis || ""
+                  }
+                  onChange={(e) =>
+                    handleChange(
+                      appointment._id,
+                      "diagnosis",
+                      e.target.value
+                    )
+                  }
+                />
+              }
+
+              prescriptionInput={
+                <input
+                  type="text"
+                  placeholder="Prescription"
+                  value={
+                    formData[appointment._id]?.prescription || ""
+                  }
+                  onChange={(e) =>
+                    handleChange(
+                      appointment._id,
+                      "prescription",
+                      e.target.value
+                    )
+                  }
+                />
+              }
             >
               <ActionButtons
                 appointmentId={appointment._id}
                 status={appointment.status}
+                diagnosis={
+                  formData[appointment._id]?.diagnosis || ""
+                }
+                prescription={
+                  formData[appointment._id]?.prescription || ""
+                }
               />
             </PatientRow>
           ))}
